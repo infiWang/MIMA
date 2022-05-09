@@ -9,6 +9,7 @@ module instr (
     output wire [4:0] rs2,
     output wire [4:0] rd,
     output wire [4:0] imm5,
+    output wire [6:0] imm7,
     output wire [11:0] imm12,
     output wire [19:0] imm20
 );
@@ -20,6 +21,7 @@ module instr (
     assign rs2[4:0]    = instr[24:20];
     assign rd[4:0]     = instr[11:7];
     assign imm5[4:0]   = instr[11:7];
+    assign imm7[6:0]   = instr[31:25];
     assign imm12[11:0] = instr[31:20];
     assign imm20[19:0] = instr[31:12];
 
