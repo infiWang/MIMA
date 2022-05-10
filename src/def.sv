@@ -1,4 +1,4 @@
-enum {
+typedef enum {
     ADD = 5'b00000,
     SUB = 5'b00001,
     XOR = 5'b00010,
