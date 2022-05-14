@@ -1,16 +1,7 @@
 `include "def.sv"
 
 module dec (
-    input [6:0] opcode,
-    input [2:0] funct3,
-    input [6:0] funct7,
-    input [4:0] rs1,
-    input [4:0] rs2,
-    input [4:0] rd,
-    input [4:0] imm5,
-    input [6:0] imm7,
-    input [11:0] imm12,
-    input [19:0] imm20,
+    input [31:0] instr,
     output [31:0] imm_i,
     output [31:0] imm_s,
     output [31:0] imm_b,
@@ -27,6 +18,28 @@ module dec (
     output op,
     output system
 );
+
+    wire [6:0] opcode;
+    wire [2:0] funct3;
+    wire [6:0] funct7;
+    wire [4:0] rs1;
+    wire [4:0] rs2;
+    wire [4:0] rd;
+    wire [4:0] imm5;
+    wire [6:0] imm7;
+    wire [11:0] imm12;
+    wire [19:0] imm20;
+
+    assign opcode[6:0] = instr[6:0];
+    assign funct3[2:0] = instr[14:12];
+    assign funct7[6:0] = instr[31:25];
+    assign rs1[4:0]    = instr[19:15];
+    assign rs2[4:0]    = instr[24:20];
+    assign rd[4:0]     = instr[11:7];
+    assign imm5[4:0]   = instr[11:7];
+    assign imm7[6:0]   = instr[31:25];
+    assign imm12[11:0] = instr[31:20];
+    assign imm20[19:0] = instr[31:12];
 
     wire [4:0] sopcode;
     assign sopcode[4:0] = opcode[6:2];
