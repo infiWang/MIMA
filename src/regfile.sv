@@ -14,7 +14,7 @@ module regfile (
 );
 
     integer i;
-    reg [w-1:0] regs[32];
+    reg [31:0] regs[32];
 
     initial begin
         for(i = 0; i < 32; i++) begin
@@ -22,8 +22,8 @@ module regfile (
         end
     end
 
-    assign rdata1 = (regs[raddr1] : 0);
-    assign rdata2 = (regs[raddr2] : 0);
+    assign rdata1 = regs[raddr1];
+    assign rdata2 = regs[raddr2];
 
     always_ff @(posedge clk) begin
         if(rst) begin
