@@ -28,7 +28,7 @@ module dec (
     output system
 );
 
-    wire sopcode[4:0];
+    wire [4:0] sopcode;
     assign sopcode[4:0] = opcode[6:2];
     assign load   = sopcode[4:0] == 5'b00000 ? 1 : 0;
     assign store  = sopcode[4:0] == 5'b01000 ? 1 : 0;
