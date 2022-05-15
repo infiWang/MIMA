@@ -1,6 +1,36 @@
 `ifndef _Definition
 `define _Definition
 
+package gopcode;
+    typedef enum bit [4:0] {
+        LOAD = 5'b00000,
+        STORE = 5'b01000,
+        LOAD_FP = 5'b00001,
+        STORE_FP = 5'b01001,
+        MISC_MEM = 5'b00011,
+        AMO = 5'b01011,
+
+        OP = 5'b01100,
+        OP_32 = 5'b00110,
+        OP_IMM = 5'b00100,
+        OP_IMM_32 = 5'b00110,
+        OP_FP = 5'b10100,
+
+        BRANCH = 5'b11000,
+        JALR = 5'b11001,
+        JAL = 5'b11011,
+        AUIPC = 5'b00101,
+        LUI = 5'b01101,
+
+        MADD = 5'b10000,
+        MSUB = 5'b10001,
+        NMSUB = 5'b10010,
+        NMADD = 5'b10011,
+
+        SYSTEM = 5'b11100
+    }
+endpackage
+
 package f3OpInt;
     typedef enum bit [2:0] {
         ADD = 3'b000,
