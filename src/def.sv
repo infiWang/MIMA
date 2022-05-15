@@ -1,5 +1,5 @@
-`ifndef _funct3OpcodeInt
-`define _funct3OpcodeInt
+`ifndef _Definition
+`define _Definition
 
 package f3OpInt;
 
@@ -15,11 +15,6 @@ package f3OpInt;
     } funct3OpcodeInt;
 
 endpackage
-
-`endif
-
-`ifndef _funct3Branch
-`define _funct3Branch
 
 package f3Br;
     enum bit [2:0] {
