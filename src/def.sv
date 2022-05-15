@@ -1,4 +1,4 @@
-typedef enum {
+typedef enum bit [4:0] {
     ADD = 5'b00000,
     SUB = 5'b00001,
     XOR = 5'b00010,
