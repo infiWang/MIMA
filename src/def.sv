@@ -2,7 +2,6 @@
 `define _Definition
 
 package f3OpInt;
-
     typedef enum bit [2:0] {
         ADD = 3'b000,
         AND = 3'b111,
@@ -13,7 +12,6 @@ package f3OpInt;
         SLT = 3'b010,
         SLTU = 3'b011
     } funct3OpcodeInt;
-
 endpackage
 
 package f3Br;
