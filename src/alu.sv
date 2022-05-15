@@ -14,7 +14,7 @@ module alu (
     always_comb begin
         case(funct3)
             f3OpInt::ADD: begin
-                if(op_imm || funct7 == 7'b0) begin
+                if(op_imm | funct7 == 7'b0) begin
                     t = a + b;
                 end else if(funct7 == 7'b0100000) begin
                     t = a - b;
