@@ -16,7 +16,7 @@ module pc (
     assign cur = r;
 
     initial begin
-        r <= 32'b0;
+        r = 32'b0;
     end
 
     always_ff @(posedge clk) begin
