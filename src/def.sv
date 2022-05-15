@@ -11,7 +11,7 @@ package gopcode;
         AMO = 5'b01011,
 
         OP = 5'b01100,
-        OP_32 = 5'b00110,
+        OP_32 = 5'b01110,
         OP_IMM = 5'b00100,
         OP_IMM_32 = 5'b00110,
         OP_FP = 5'b10100,
@@ -28,7 +28,7 @@ package gopcode;
         NMADD = 5'b10011,
 
         SYSTEM = 5'b11100
-    }
+    } genericOpcode;
 endpackage
 
 package f3OpInt;
