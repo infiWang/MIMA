@@ -1,16 +1,10 @@
-typedef enum bit [4:0] {
-    ADD = 5'b00000,
-    SUB = 5'b00001,
-    XOR = 5'b00010,
-    OR  = 5'b00011,
-    AND = 5'b00100,
-    SRA = 5'b00101,
-    SRL = 5'b00110,
-    SLL = 5'b00111,
-    LTS = 5'b01000,
-    LTU = 5'b01001,
-    GES = 5'b01010,
-    GEU = 5'b01011,
-    EQ  = 5'b01100,
-    NE  = 5'b01101
-} aluop;
+enum bit [2:0] {
+    f3OpInt_ADD = 3'b000,
+    f3OpInt_AND = 3'b111,
+    f3OpInt_OR = 3'b110,
+    f3OpInt_XOR = 3'b100,
+    f3OpInt_SL = 3'b001,
+    f3OpInt_SR = 3'b101,
+    f3OpInt_SLT = 3'b010,
+    f3OpInt_SLTU = 3'b011
+} f3OpInt;
