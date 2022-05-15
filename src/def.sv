@@ -1,19 +1,35 @@
-enum bit [2:0] {
-    f3OpInt_ADD = 3'b000,
-    f3OpInt_AND = 3'b111,
-    f3OpInt_OR = 3'b110,
-    f3OpInt_XOR = 3'b100,
-    f3OpInt_SL = 3'b001,
-    f3OpInt_SR = 3'b101,
-    f3OpInt_SLT = 3'b010,
-    f3OpInt_SLTU = 3'b011
-} f3OpInt;
+`ifndef _funct3OpcodeInt
+`define _funct3OpcodeInt
 
-enum bit [2:0] {
-    f3Br_EQ = 3'b000,
-    f3Br_NE = 3'b001,
-    f3Br_LT = 3'b100,
-    f3Br_GE = 3'b101,
-    f3Br_LTU = 3'b110,
-    f3Br_GEU = 3'b111
-} f3Br;
+package f3OpInt;
+
+    typedef enum bit [2:0] {
+        ADD = 3'b000,
+        AND = 3'b111,
+        OR = 3'b110,
+        XOR = 3'b100,
+        SL = 3'b001,
+        SR = 3'b101,
+        SLT = 3'b010,
+        SLTU = 3'b011
+    } funct3OpcodeInt;
+
+endpackage
+
+`endif
+
+`ifndef _funct3Branch
+`define _funct3Branch
+
+package f3Br;
+    enum bit [2:0] {
+        EQ = 3'b000,
+        NE = 3'b001,
+        LT = 3'b100,
+        GE = 3'b101,
+        LTU = 3'b110,
+        GEU = 3'b111
+    } funct3Branch;
+endpackage
+
+`endif
