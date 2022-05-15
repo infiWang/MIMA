@@ -43,17 +43,16 @@ module dec (
 
     wire [4:0] sopcode;
     assign sopcode[4:0] = opcode[6:2];
-    assign load   = sopcode[4:0] == 5'b00000 ? 1 : 0;
-    assign store  = sopcode[4:0] == 5'b01000 ? 1 : 0;
-    assign branch = sopcode[4:0] == 5'b11000 ? 1 : 0;
-    assign jalr   = sopcode[4:0] == 5'b11001 ? 1 : 0; 
-    assign jal    = sopcode[4:0] == 5'b11011 ? 1 : 0;
-    assign lui    = sopcode[4:0] == 5'b01101 ? 1 : 0;
-    assign auipc  = sopcode[4:0] == 5'b00101 ? 1 : 0;
-    assign op_imm = sopcode[4:0] == 5'b00100 ? 1 : 0;
-    assign op     = sopcode[4:0] == 5'b01100 ? 1 : 0;
-    assign system = sopcode[4:0] == 5'b11100 ? 1 : 0;
-    // TODO: move sopcode to def?
+    assign load   = sopcode[4:0] == gopcode::LOAD   ? 1 : 0;
+    assign store  = sopcode[4:0] == gopcode::STORE  ? 1 : 0;
+    assign branch = sopcode[4:0] == gopcode::BRANCH ? 1 : 0;
+    assign jalr   = sopcode[4:0] == gopcode::JALR   ? 1 : 0;
+    assign jal    = sopcode[4:0] == gopcode::JAL    ? 1 : 0;
+    assign lui    = sopcode[4:0] == gopcode::LUI    ? 1 : 0;
+    assign auipc  = sopcode[4:0] == gopcode::AUIPC  ? 1 : 0;
+    assign op_imm = sopcode[4:0] == gopcode::OP_IMM ? 1 : 0;
+    assign op     = sopcode[4:0] == gopcode::OP     ? 1 : 0;
+    assign system = sopcode[4:0] == gopcode::SYSTEM ? 1 : 0;
 
     /*
     assign imm_i[31:0] = { { 20{imm12[11]} }, imm12 };
