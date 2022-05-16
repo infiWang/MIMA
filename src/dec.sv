@@ -45,13 +45,13 @@ module dec (
     assign imm_s[31:0] = { { 20{imm7[6]} }, imm7, imm5 };
     assign imm_b[31:0] = { { 20{imm7[6]} }, imm5[0], imm7[5:0], imm5[4:1], 1'b0 };
     assign imm_u[31:0] = { imm20, 12'b0 };
-    assign imm_j[31:0] = { { 12{imm20[19]} }, imm20[7:0], imm20[8], imm20[18:9], 1'b0 };
+    assign imm_j[31:0] = { { 11{imm20[19]} }, imm20[7:0], imm20[8], imm20[18:9], 1'b0 };
     */
     assign imm_i[31:0] = { { 20{imm12[11]} }, imm12[11:5], imm12[4:1], imm12[0] };
     assign imm_s[31:0] = { { 20{imm7[6]} }, imm7[6], imm7[5:0], imm5[4:1], imm5[0] };
     assign imm_b[31:0] = { { 19{imm7[6]} }, imm7[6], imm5[0], imm7[5:0], imm5[4:1], 1'b0 };
     assign imm_u[31:0] = { imm20[19], imm20[18:9], imm20[8], imm20[7:0], 12'b0 };
-    assign imm_j[31:0] = { { 12{imm20[19]} }, imm20[19], imm20[7:0], imm20[8], imm20[18:9], 1'b0 };
+    assign imm_j[31:0] = { { 11{imm20[19]} }, imm20[19], imm20[7:0], imm20[8], imm20[18:9], 1'b0 };
     // Does this really provide any benifit?
     // Maybe during synthesize?
     // Reminds me of LTO somehow...
