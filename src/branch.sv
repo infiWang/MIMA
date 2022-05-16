@@ -2,7 +2,7 @@
 
 module branch (
     input branch,
-    input [0:2] funct3,
+    input [2:0] funct3,
 
     input [31:0] rs1,
     input [31:0] rs2,
