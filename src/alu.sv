@@ -43,10 +43,10 @@ module alu (
                 end
             end
             f3OpInt::SLT: begin
-                t = $signed(a) < $signed(b) ? 32'h0001 : 32'h0000;
+                t = $signed(a) < $signed(b) ? 32'b1 : 32'b0;
             end
             f3OpInt::SLTU: begin
-                t = a < b ? 32'h0001 : 32'h0000;
+                t = a < b ? 32'b1 : 32'b0;
             end
             default: t = 32'bx;
         endcase 
