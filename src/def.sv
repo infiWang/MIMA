@@ -55,4 +55,22 @@ package f3Br;
     } funct3Branch;
 endpackage
 
+package f3Ld;
+    enum bit [2:0] {
+        LB = 3'b000,
+        LH = 3'b001,
+        LW = 3'b010,
+        LBU = 3'b100,
+        LHU = 3'b101
+    } funct3Load;
+endpackage
+
+package f3St;
+    enum bit [2:0] {
+        SB = 3'b000,
+        SH = 3'b001,
+        SW = 3'b010
+    } funct3Store;
+endpackage
+
 `endif
