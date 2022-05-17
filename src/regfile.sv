@@ -29,8 +29,7 @@ module regfile (
             for(i = 0; i < 32; i++) begin
                 regs[i] <= 32'b0;
             end
-        end
-        else begin
+        end else begin
             if(wen & waddr != 5'b0) begin 
                 regs[waddr] <= wdata;
             end
