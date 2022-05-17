@@ -1,8 +1,7 @@
 `include "def.sv"
 
 module pc (
-    input clk,
-    input rst,
+    input clk, rst,
 
     input jmp,
     input rel,
