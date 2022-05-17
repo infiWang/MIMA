@@ -5,7 +5,6 @@ module pc (
 
     input jmp,
     input rel,
-    input [31:0] diff,
     input [31:0] nxt,
 
     output [31:0] cur
@@ -24,7 +23,7 @@ module pc (
         end else begin
             if(jmp) begin
                 if(rel) begin
-                    r <= r + diff;
+                    r <= r + nxt;
                 end else begin
                     r <= nxt;
                 end

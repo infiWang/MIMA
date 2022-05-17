@@ -7,7 +7,7 @@ module pc_tb();
     wire [31:0] addr_pc_cur;
 
     reg pc_jmp, pc_jmp_rel;
-    reg [31:0] addr_pc_nxt, addr_pc_diff;
+    reg [31:0] addr_pc_nxt;
 
     localparam period = 10;
 
@@ -21,7 +21,6 @@ module pc_tb();
         pc_jmp     = 0;
         pc_jmp_rel = 0;
         addr_pc_nxt  = 32'b0;
-        addr_pc_diff = 32'b0;
         #period;
         rst = 0;
         #period;
@@ -31,7 +30,6 @@ module pc_tb();
         pc_jmp     = 1;
         pc_jmp_rel = 0;
         addr_pc_nxt  = 32'h00001000;
-        addr_pc_diff = 32'h00000000;
         #period;
         pc_jmp     = 0;
         addr_pc_nxt  = 32'b0;
@@ -40,13 +38,11 @@ module pc_tb();
 
         pc_jmp     = 1;
         pc_jmp_rel = 1;
-        addr_pc_nxt  = 32'h00001000;
-        addr_pc_diff = 32'hffffffec;
+        addr_pc_nxt = 32'hffffffec;
         #period;
         pc_jmp     = 0;
         pc_jmp_rel = 0;
-        addr_pc_nxt  = 32'b0;
-        addr_pc_diff = 32'b0;
+        addr_pc_nxt = 32'b0;
 
         #90;
 
@@ -63,6 +59,6 @@ module pc_tb();
         .clk(clk), .rst(rst),
         .cur(addr_pc_cur),
         .jmp(pc_jmp), .rel(pc_jmp_rel),
-        .nxt(addr_pc_nxt), .diff(addr_pc_diff)
+        .nxt(addr_pc_nxt)
     );
 endmodule
