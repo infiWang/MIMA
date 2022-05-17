@@ -115,17 +115,17 @@ module sccpu (
         if (auipc) begin
             rf_wdata = res_auipc;
         end else if (jal | jalr) begin
-            rf_wdata[31:0] = pc_cur[31:0] + 4;
+            rf_wdata = pc_cur + 4;
         end else if (load) begin
             // rf_wdata[31:0] = dmem_data_out[31:0];
             rf_wdata = 32'b0;
         end else if (lui) begin
             rf_wdata = imm_u;
         end else if (op | op_imm) begin
-            rf_wdata[31:0] = alu_t[31:0];
+            rf_wdata = alu_t;
         end else begin
             rf_wen = 0;
-            rf_wdata[31:0] = 32'b0;
+            rf_wdata = 32'b0;
         end
     end
 
