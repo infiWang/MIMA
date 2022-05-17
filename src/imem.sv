@@ -11,7 +11,7 @@ module iram (
 
     reg [31:0] mem[0:mem_size-1];
     initial begin
-        $readmemh("/path/to/***.rv32i.i", mem);
+        $readmemh("/path/to/***.rv32i.i.mem", mem);
     end
 
     assign rdata = mem[actual_address][31:0];
