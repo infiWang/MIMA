@@ -25,7 +25,7 @@ module sccpu (
     );
 
     wire [6:0] opcode; wire [2:0] funct3; wire [6:0] funct7;
-    wire [4:0] rs1, rs2, rd;
+    wire [4:0] rs1_addr, rs2_addr, rd;
     wire [4:0] imm5; wire [6:0] imm7; wire [11:0] imm12; wire [19:0] imm20;
     wire [31:0] imm_i, imm_s, imm_b, imm_u, imm_j;
     wire load, store, branch, jalr, jal, auipc, lui, op, op_imm, system;
@@ -35,19 +35,19 @@ module sccpu (
     dec dec0(
         .instr(instr),
         .opcode(opcode), .funct3(funct3), .funct7(funct7),
-        .rs1(rs1), .rs2(rs2), .rd(rd),
+        .rs1(rs1_addr), .rs2(rs2_addr), .rd(rd),
         .imm5(imm5), .imm7(imm7), .imm12(imm12), .imm20(imm20),
         .imm_i(imm_i), .imm_s(imm_s), .imm_b(imm_b), .imm_u(imm_u), .imm_j(imm_j),
         .load(load), .store(store), .branch(branch), .jalr(jalr), .jal(jal), .lui(lui), .auipc(auipc), .op_imm(op_imm), .op(op), .system(system)
     );
 
     wire [31:0] rs1_data, rs2_data;
-    reg wen; reg [4:0] waddr; reg [31:0] wdata;
+    reg rf_wen; reg [4:0] rf_waddr; reg [31:0] rf_wdata;
 
     regfile rf0(
         .clk(clk), .rst(rst),
-        .raddr1(rs1), .raddr2(rs2), .rdata1(rs1_data), .rdata2(rs2_data),
-        .wen(wen), .waddr(waddr), .wdata(wdata)
+        .raddr1(rs1_addr), .raddr2(rs2_addr), .rdata1(rs1_data), .rdata2(rs2_data),
+        .wen(rf_wen), .waddr(rf_waddr), .wdata(rf_wdata)
     );
 
     // EX
@@ -66,7 +66,7 @@ module sccpu (
 
     branch br0(
         .branch(branch), .funct3(funct3),
-        .rs1(rs1_data), .rs2(rs2_data),
+        .rs1(alu_a), .rs2(alu_b),
         .taken(branch_taken)
     );
 
@@ -103,24 +103,25 @@ module sccpu (
     // WB
 
     wire [31:0] res_auipc;
+    assign rf_waddr = rd;
     assign res_auipc = pc_cur[31:0] + imm_u[31:0];
 
     always_comb begin
-        wen = 1;
+        rf_wen = 1;
         if (auipc) begin
-            wdata = res_auipc;
+            rf_wdata = res_auipc;
         end else if (jal | jalr) begin
-            wdata[31:0] = pc_cur[31:0] + 4;
+            rf_wdata[31:0] = pc_cur[31:0] + 4;
         end else if (load) begin
-            // wdata[31:0] = dmem_data_out[31:0];
-            wdata = 32'b0;
+            // rf_wdata[31:0] = dmem_data_out[31:0];
+            rf_wdata = 32'b0;
         end else if (lui) begin
-            wdata = imm_u;
+            rf_wdata = imm_u;
         end else if (op | op_imm) begin
-            wdata[31:0] = alu_t[31:0];
+            rf_wdata[31:0] = alu_t[31:0];
         end else begin
-            wen = 0;
-            wdata[31:0] = 32'b0;
+            rf_wen = 0;
+            rf_wdata[31:0] = 32'b0;
         end
     end
 
