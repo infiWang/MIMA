@@ -1,8 +1,7 @@
 `include "def.sv"
 
 module regfile (
-    input clk,
-    input rst,
+    input clk, rst,
 
     input  [4:0]  raddr1, raddr2,
     output [31:0] rdata1, rdata2,
