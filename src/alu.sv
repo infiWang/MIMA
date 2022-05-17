@@ -12,7 +12,7 @@ module alu (
 );
 
     always_comb begin
-        if(op) begin
+        if(op | op_imm) begin
             case(funct3)
                 f3OpInt::ADD: begin
                     if(op_imm | funct7 == 7'b0) begin
