@@ -184,8 +184,8 @@ module alu_tb();
 
     alu alut (
         .op(op), .op_imm(op_imm),
-        .a(a), .b(b),
         .funct3(funct3), .funct7(funct7),
+        .a(a), .b(b),
         .t(t)
     );
     /*---iverilog---*/
