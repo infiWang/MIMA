@@ -3,8 +3,7 @@
 module pc (
     input clk, rst,
 
-    input jmp,
-    input rel,
+    input jmp, rel,
     input [31:0] nxt,
 
     output [31:0] cur
