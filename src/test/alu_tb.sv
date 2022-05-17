@@ -173,7 +173,47 @@ module alu_tb();
         // and
         funct3 = f3OpInt::AND;
         #period;
-        $stop;
+
+        a      = 32'h20001000;
+        b      = 32'h504;
+        op     = 0;
+        op_imm = 1;
+
+        // +
+        funct3 = f3OpInt::ADD;
+        funct7 = 7'b0000000;
+        #period;
+        // -
+        funct7 = 7'b0100000;
+        #period;
+        funct7 = 7'b0000000;
+        // <<
+        funct3 = f3OpInt::SL;
+        #period;
+        // slt
+        funct3 = f3OpInt::SLT;
+        #period;
+        // sltu
+        funct3 = f3OpInt::SLTU;
+        #period;
+        // xor
+        funct3 = f3OpInt::XOR;
+        #period;
+        // logical right
+        funct3 = f3OpInt::SR;
+        funct7 = 7'b0000000;
+        #period;
+        // arithmetic right
+        funct7 = 7'b0100000;
+        #period;
+        funct7 = 7'b0000000;
+        // or
+        funct3 = f3OpInt::OR;
+        #period;
+        // and
+        funct3 = f3OpInt::AND;
+        #period;
+        $finish;
     end
   
     /*===iverilog===*/
