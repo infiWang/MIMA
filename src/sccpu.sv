@@ -38,7 +38,7 @@ module sccpu (
         .rs1(addr_rs1), .rs2(addr_rs2), .rd(addr_rd),
         .imm5(imm5), .imm7(imm7), .imm12(imm12), .imm20(imm20),
         .imm_i(imm_i), .imm_s(imm_s), .imm_b(imm_b), .imm_u(imm_u), .imm_j(imm_j),
-        .load(load), .store(store), .branch(branch), .jalr(jalr), .jal(jal), .lui(lui), .auipc(auipc), .op_imm(op_imm), .op(op), .system(system)
+        .load(load), .store(store), .branch(branch), .jalr(jalr), .jal(jal), .auipc(auipc), .lui(lui), .op_imm(op_imm), .op(op), .system(system)
     );
 
     wire [31:0] rf_rdata_rs1, rf_rdata_rs2;
