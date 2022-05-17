@@ -71,11 +71,11 @@ module sccpu (
     );
 
     wire [31:0] addr_br, addr_jalr, addr_jal;
-    assign addr_br   = pc_cur + imm_b;
+    assign addr_br   = imm_b;
     assign addr_jalr = rs1_data + imm_i;
-    assign addr_jal  = pc_cur + imm_j;
-    assign pc_jmp = branch_taken | jalr | jal;
-    assign pc_rel = branch_taken | jalr;
+    assign addr_jal  = imm_j;
+    assign pc_jmp = branch_taken | jal | jalr;
+    assign pc_rel = branch_taken | jal;
     assign pc_nxt = jal ? addr_jal
                   : branch_taken ? addr_br
                   : jalr ? addr_jalr
