@@ -25,7 +25,7 @@ module sccpu (
     );
 
     wire [6:0] opcode; wire [2:0] funct3; wire [6:0] funct7;
-    wire [4:0] rs1_addr, rs2_addr, rd;
+    wire [4:0] addr_rs1, addr_rs2, addr_rd;
     wire [4:0] imm5; wire [6:0] imm7; wire [11:0] imm12; wire [19:0] imm20;
     wire [31:0] imm_i, imm_s, imm_b, imm_u, imm_j;
     wire load, store, branch, jalr, jal, auipc, lui, op, op_imm, system;
@@ -35,26 +35,26 @@ module sccpu (
     dec dec0(
         .instr(instr),
         .opcode(opcode), .funct3(funct3), .funct7(funct7),
-        .rs1(rs1_addr), .rs2(rs2_addr), .rd(rd),
+        .rs1(addr_rs1), .rs2(addr_rs2), .rd(addr_rd),
         .imm5(imm5), .imm7(imm7), .imm12(imm12), .imm20(imm20),
         .imm_i(imm_i), .imm_s(imm_s), .imm_b(imm_b), .imm_u(imm_u), .imm_j(imm_j),
         .load(load), .store(store), .branch(branch), .jalr(jalr), .jal(jal), .lui(lui), .auipc(auipc), .op_imm(op_imm), .op(op), .system(system)
     );
 
-    wire [31:0] rs1_data, rs2_data;
+    wire [31:0] rf_rdata_rs1, rf_rdata_rs2;
     reg rf_wen; reg [4:0] rf_waddr; reg [31:0] rf_wdata;
 
     regfile rf0(
         .clk(clk), .rst(rst),
-        .raddr1(rs1_addr), .raddr2(rs2_addr), .rdata1(rs1_data), .rdata2(rs2_data),
+        .raddr1(addr_rs1), .raddr2(addr_rs2), .rdata1(rf_rdata_rs1), .rdata2(rf_rdata_rs2),
         .wen(rf_wen), .waddr(rf_waddr), .wdata(rf_wdata)
     );
 
     // EX
 
     wire [31:0] alu_a, alu_b, alu_t;
-    assign alu_a = rs1_data;
-    assign alu_b = op_imm ? imm_i : rs2_data;
+    assign alu_a = rf_rdata_rs1;
+    assign alu_b = op_imm ? imm_i : rf_rdata_rs2;
 
     alu alu0(
         .op(op), .op_imm(op_imm),
@@ -72,12 +72,12 @@ module sccpu (
 
     wire [31:0] addr_br, addr_jal, addr_jalr,
                 addr_tgt_br, addr_tgt_jal, addr_tgt_jalr;
-    assign addr_br  = imm_b;
+    assign addr_br   = imm_b;
     assign addr_jal  = imm_j;
-    assign addr_jalr = rs1_data + imm_i;
+    assign addr_jalr = rf_rdata_rs1 + imm_i;
     assign addr_br_tgt   = pc_cur + imm_b;
     assign addr_jal_tgt  = pc_cur + imm_j;
-    assign addr_jalr_tgt = rs1_data + imm_i;
+    assign addr_jalr_tgt = rf_rdata_rs1 + imm_i;
     assign pc_jmp = branch_taken | jal | jalr;
     assign pc_rel = branch_taken | jal;
     assign pc_nxt = jal ? addr_jal
@@ -100,14 +100,13 @@ module sccpu (
     // MEM
 
     wire [31:0] addr_ld, addr_st;
-    assign addr_ld = rs1_data + imm_i;
-    assign addr_st = rs1_data + imm_s;
-
+    assign addr_ld = rf_rdata_rs1 + imm_i;
+    assign addr_st = rf_rdata_rs1 + imm_s;
 
     // WB
 
     wire [31:0] res_auipc;
-    assign rf_waddr = rd;
+    assign rf_waddr = addr_rd;
     assign res_auipc = pc_cur[31:0] + imm_u[31:0];
 
     always_comb begin
