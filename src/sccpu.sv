@@ -70,10 +70,14 @@ module sccpu (
         .taken(branch_taken)
     );
 
-    wire [31:0] addr_br, addr_jalr, addr_jal;
-    assign addr_br   = imm_b;
-    assign addr_jalr = rs1_data + imm_i;
+    wire [31:0] addr_br, addr_jal, addr_jalr,
+                addr_tgt_br, addr_tgt_jal, addr_tgt_jalr;
+    assign addr_br  = imm_b;
     assign addr_jal  = imm_j;
+    assign addr_jalr = rs1_data + imm_i;
+    assign addr_tgt_br   = pc_cur + imm_b;
+    assign addr_tgt_jal  = pc_cur + imm_j;
+    assign addr_tgt_jalr = rs1_data + imm_i;
     assign pc_jmp = branch_taken | jal | jalr;
     assign pc_rel = branch_taken | jal;
     assign pc_nxt = jal ? addr_jal
