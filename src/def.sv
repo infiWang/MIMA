@@ -45,7 +45,7 @@ package f3OpInt;
 endpackage
 
 package f3Br;
-    enum bit [2:0] {
+    typedef enum bit [2:0] {
         EQ  = 3'b000,
         NE  = 3'b001,
         LT  = 3'b100,
@@ -56,7 +56,7 @@ package f3Br;
 endpackage
 
 package f3Ld;
-    enum bit [2:0] {
+    typedef enum bit [2:0] {
         LB  = 3'b000,
         LH  = 3'b001,
         LW  = 3'b010,
@@ -66,7 +66,7 @@ package f3Ld;
 endpackage
 
 package f3St;
-    enum bit [2:0] {
+    typedef enum bit [2:0] {
         SB = 3'b000,
         SH = 3'b001,
         SW = 3'b010
