@@ -9,7 +9,7 @@ module iram (
     wire [addr_width-1:0] actual_address;
     assign actual_address[addr_width-1:0] = addr[addr_width+1:2];
 
-    reg [31:0] mem[mem_size-1:0];
+    reg [31:0] mem[0:mem_size-1];
     initial begin
         $readmemh("/path/to/***.rv32i.i", mem);
     end
