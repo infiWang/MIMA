@@ -71,7 +71,7 @@ module sccpu (
     );
 
     wire [31:0] addr_br, addr_jal, addr_jalr,
-                addr_tgt_br, addr_tgt_jal, addr_tgt_jalr;
+                addr_br_tgt, addr_jal_tgt, addr_jalr_tgt;
     assign addr_br   = imm_b;
     assign addr_jal  = imm_j;
     assign addr_jalr = rf_rdata_rs1 + imm_i;
