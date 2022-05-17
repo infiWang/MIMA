@@ -1,4 +1,4 @@
-module iram (
+module imem (
     input  [31:0] addr,
     output [31:0] rdata
 );
