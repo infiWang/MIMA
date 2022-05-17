@@ -75,9 +75,9 @@ module sccpu (
     assign addr_br  = imm_b;
     assign addr_jal  = imm_j;
     assign addr_jalr = rs1_data + imm_i;
-    assign addr_tgt_br   = pc_cur + imm_b;
-    assign addr_tgt_jal  = pc_cur + imm_j;
-    assign addr_tgt_jalr = rs1_data + imm_i;
+    assign addr_br_tgt   = pc_cur + imm_b;
+    assign addr_jal_tgt  = pc_cur + imm_j;
+    assign addr_jalr_tgt = rs1_data + imm_i;
     assign pc_jmp = branch_taken | jal | jalr;
     assign pc_rel = branch_taken | jal;
     assign pc_nxt = jal ? addr_jal
