@@ -12,7 +12,7 @@ module pc_tb();
     localparam period = 10;
 
     initial begin
-        clk = 0;
+        clk = 1;
         forever #5 clk = ~clk;
     end
 

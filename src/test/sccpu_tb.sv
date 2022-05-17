@@ -11,7 +11,7 @@ module sccpu_tb();
     );
 
     initial begin
-        clk = 0;
+        clk = 1;
         forever #5 clk = ~clk;
     end
 

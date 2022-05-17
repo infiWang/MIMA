@@ -15,7 +15,7 @@ module regfile_tb();
     localparam period = 10;
 
     initial begin
-        clk = 0;
+        clk = 1;
         forever #1 clk = ~clk;
     end
 
