@@ -2,6 +2,9 @@
 `timescale 1ns/1ns
 
 module alu_tb();
+
+    localparam period = 1;
+
     reg unsigned [31:0] a;
     reg unsigned [31:0] b;
     reg [2:0] funct3;
@@ -10,8 +13,14 @@ module alu_tb();
     reg op_imm;
     
     wire [31:0] t;
-    
-    localparam period = 1;
+
+    alu alut (
+        .op(op), .op_imm(op_imm),
+        .funct3(funct3), .funct7(funct7),
+        .a(a), .b(b),
+        .t(t)
+    );
+
     initial begin
         a      = 998244353;
         b      = 10000007;
@@ -215,19 +224,12 @@ module alu_tb();
         #period;
         $finish;
     end
-  
-    /*===iverilog===*/
+
+    /*---iverilog---*/
     initial begin
         $dumpfile("alu_wave.vcd");
         $dumpvars(0, alu_tb);
     end
-
-    alu alut (
-        .op(op), .op_imm(op_imm),
-        .funct3(funct3), .funct7(funct7),
-        .a(a), .b(b),
-        .t(t)
-    );
     /*---iverilog---*/
   
 endmodule

@@ -2,6 +2,9 @@
 `timescale 1ns/100ps
 
 module regfile_tb();
+
+    localparam period = 10;
+
     reg clk, rst;
 
     reg [4:0] raddr1, raddr2;
@@ -11,8 +14,14 @@ module regfile_tb();
     reg [4:0] waddr;
     reg [31:0] wdata;
     
-    
-    localparam period = 10;
+    regfile regfilet (
+        .clk(clk), .rst(rst),
+        .raddr1(raddr1), .raddr2(raddr2),
+        .rdata1(rdata1), .rdata2(rdata2),
+        .wen(wen),
+        .waddr(waddr),
+        .wdata(wdata)
+    );    
 
     initial begin
         clk = 1;
@@ -91,12 +100,5 @@ module regfile_tb();
         $dumpvars(0, regfile_tb);
     end
     /*---iverilog---*/
-    regfile regfilet (
-        .clk(clk), .rst(rst),
-        .raddr1(raddr1), .raddr2(raddr2),
-        .rdata1(rdata1), .rdata2(rdata2),
-        .wen(wen),
-        .waddr(waddr),
-        .wdata(wdata)
-    );
+
 endmodule

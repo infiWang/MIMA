@@ -2,14 +2,15 @@
 `timescale 1ns/100ps
 
 module pc_tb();
+
+    localparam period = 10;
+
     reg clk, rst;
 
     wire [31:0] addr_pc_cur;
 
     reg pc_jmp, pc_jmp_rel;
     reg [31:0] addr_pc_nxt;
-
-    localparam period = 10;
 
     initial begin
         clk = 1;
@@ -49,16 +50,18 @@ module pc_tb();
         $finish;
     end
 
-    /*===iverilog===*/
-    initial begin
-        $dumpfile("pc_wave.vcd");
-        $dumpvars(0, pc_tb);
-    end
-    /*---iverilog---*/
     pc pct (
         .clk(clk), .rst(rst),
         .cur(addr_pc_cur),
         .jmp(pc_jmp), .rel(pc_jmp_rel),
         .nxt(addr_pc_nxt)
     );
+
+    /*===iverilog===*/
+    initial begin
+        $dumpfile("pc_wave.vcd");
+        $dumpvars(0, pc_tb);
+    end
+    /*---iverilog---*/
+
 endmodule

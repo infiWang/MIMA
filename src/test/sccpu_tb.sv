@@ -2,6 +2,7 @@
 `timescale 1ns/100ps
 
 module sccpu_tb();
+
     localparam period = 10;
 
     reg clk, rst;
@@ -33,4 +34,5 @@ module sccpu_tb();
         $dumpvars(0, sccpu_tb);
     end
     /*---iverilog---*/
+
 endmodule

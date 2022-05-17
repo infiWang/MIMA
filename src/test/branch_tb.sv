@@ -1,6 +1,9 @@
 `timescale 1ns/1ns
 
 module branch_tb();
+
+    localparam period = 1;
+
     reg branch;
     reg [2:0] funct3;
 
@@ -8,7 +11,6 @@ module branch_tb();
 
     wire taken;
 
-    localparam period = 1;
     initial begin
         branch = 1;
 
@@ -93,16 +95,18 @@ module branch_tb();
         if (taken) $display("geu failed");
         
     end
-    
+
+    branch brancht (
+        .branch(branch), .funct3(funct3),
+        .rs1(rs1), .rs2(rs2),
+        .taken(taken)
+    );
+
     /*===iverilog===*/
     initial begin
         $dumpfile("branch_wave.vcd");
         $dumpvars(0, branch_tb);
     end
     /*---iverilog---*/
-    branch brancht (
-        .branch(branch), .funct3(funct3),
-        .rs1(rs1), .rs2(rs2),
-        .taken(taken)
-    );
+
 endmodule
