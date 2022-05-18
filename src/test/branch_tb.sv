@@ -102,7 +102,7 @@ module branch_tb();
         .taken(taken)
     );
 
-    /*===iverilog===*/
+    /*---iverilog---*/
     initial begin
         $dumpfile("branch_wave.vcd");
         $dumpvars(0, branch_tb);

@@ -94,7 +94,7 @@ module regfile_tb();
         $finish;
     end
 
-    /*===iverilog===*/
+    /*---iverilog---*/
     initial begin
         $dumpfile("regfile_wave.vcd");
         $dumpvars(0, regfile_tb);

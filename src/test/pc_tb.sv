@@ -57,7 +57,7 @@ module pc_tb();
         .nxt(addr_pc_nxt)
     );
 
-    /*===iverilog===*/
+    /*---iverilog---*/
     initial begin
         $dumpfile("pc_wave.vcd");
         $dumpvars(0, pc_tb);
