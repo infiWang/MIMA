@@ -37,9 +37,9 @@ module alu (
                 end
                 f3OpInt::SR: begin
                     if(funct7 == 7'b0) begin
-                        t = a >> b;
+                        t = a >> b[4:0];
                     end else if(funct7 == 7'b0100000) begin
-                        t = $signed(a) >>> b;
+                        t = $signed(a) >>> b[4:0];
                     end else begin
                         t = 32'bx;
                     end
