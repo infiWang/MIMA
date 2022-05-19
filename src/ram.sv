@@ -1,3 +1,5 @@
+`include "def.sv"
+
 module ram (
     input clk, rst,
 
@@ -12,7 +14,7 @@ module ram (
     localparam addr_width = 11;
     localparam mem_size   = (2**addr_width);
 
-    reg [31:0] mem[mem_size - 1:0];
+    reg [31:0] mem[mem_size-1:0];
     integer i;
     initial begin
         for(int i = 0; i < mem_size; i++) mem[i] = 32'b0;
@@ -24,7 +26,7 @@ module ram (
     assign byte_offset      = addr[1:0];
     assign half_word_offset = {addr[1], 1'b0};
 
-    wire [31:0] tmp_load;
+    wire [31:0] data_word;
     wire [31:0] data_shifted;
     wire [3:0] byte_we_pattern;
     we_pattern_gen we_gen0(
@@ -36,32 +38,32 @@ module ram (
         .data_shifted(data_shifted)
     );
 
-    assign tmp_load = mem[actual_address];
+    assign data_word = mem[actual_address];
 
     always_comb begin
         if (load) begin
             case (funct3)
                 f3Ld::LB: begin
                     rdata = {
-                        { 24{ tmp_load[byte_offset*8 + 7] }}, tmp_load[byte_offset*8 +: 8]
+                        { 24{data_word[byte_offset*8 + 7]} }, data_word[byte_offset*8 +: 8]
                     };
                 end
                 f3Ld::LH: begin
                     rdata = {
-                        { 16{ tmp_load[half_word_offset*8 + 15] }}, tmp_load[half_word_offset*8 +: 16]
+                        { 16{data_word[half_word_offset*8 + 15]} }, data_word[half_word_offset*8 +: 16]
                     };
                 end
                 f3Ld::LW: begin
-                    rdata = tmp_load;
+                    rdata = data_word;
                 end
                 f3Ld::LBU: begin
                     rdata = {
-                        24'b0, tmp_load[byte_offset * 8 +: 8]
+                        24'b0, data_word[byte_offset * 8 +: 8]
                     };
                 end
                 f3Ld::LHU: begin
                     rdata = {
-                        16'b0, tmp_load[half_word_offset * 8 +: 16]
+                        16'b0, data_word[half_word_offset * 8 +: 16]
                     };
                 end
                 default: begin
