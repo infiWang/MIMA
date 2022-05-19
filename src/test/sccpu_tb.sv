@@ -1,4 +1,4 @@
-`include "def.sv"
+`include "def.svh"
 `timescale 1ns/100ps
 
 module sccpu_tb();

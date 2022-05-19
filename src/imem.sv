@@ -1,3 +1,5 @@
+`include "def.svh"
+
 module imem (
     input  [31:0] addr,
     output [31:0] rdata

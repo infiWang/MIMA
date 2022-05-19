@@ -1,4 +1,4 @@
-`include "def.sv"
+`include "def.svh"
 
 module dec (
     input [31:0] instr,

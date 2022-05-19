@@ -1,4 +1,4 @@
-`include "def.sv"
+`include "def.svh"
 
 module ram (
     input clk, rst,

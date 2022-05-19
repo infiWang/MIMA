@@ -1,3 +1,5 @@
+`include "def.svh"
+
 module mmio (
     input clk, rst,
 
