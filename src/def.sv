@@ -41,7 +41,7 @@ package f3OpInt;
         SR   = 3'b101,
         SLT  = 3'b010,
         SLTU = 3'b011
-    } funct3OpcodeInt;
+    } funct3OpInt;
 endpackage
 
 package f3Br;
