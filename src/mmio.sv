@@ -12,8 +12,8 @@ module mmio (
     ram dmem0(
         .clk(clk), .rst(rst),
         .load(load), .store(store),
-        .access(funct3),
-        .addr(addr), .data_in(wdata), .data_out(rdata)
+        .funct3(funct3),
+        .addr(addr), .wdata(wdata), .rdata(rdata)
     );
 
 endmodule
