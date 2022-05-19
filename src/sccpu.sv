@@ -41,6 +41,7 @@ module sccpu (
         .load(load), .store(store), .branch(branch), .jalr(jalr), .jal(jal), .auipc(auipc), .lui(lui), .op_imm(op_imm), .op(op), .system(system)
     );
 
+
     wire [31:0] rf_rdata_rs1, rf_rdata_rs2;
     reg rf_wen; reg [4:0] rf_waddr; reg [31:0] rf_wdata;
 
@@ -60,6 +61,14 @@ module sccpu (
         .op(op), .op_imm(op_imm),
         .funct3(funct3), .funct7(funct7),
         .a(alu_a), .b(alu_b), .t(alu_t)
+    );
+
+    wire [31:0] mem_addr, dmem_data_out;
+    assign mem_addr = load ? rf_rdata_rs1 + imm_i: rf_rdata_rs1 + imm_s;
+
+    mmio mmio0(
+        .clk(clk), .rst(rst), .load(load), .store(store),
+        .access(funct3), .addr(mem_addr), .data_in(rf_rdata_rs2), .data_out(dmem_data_out)
     );
 
     wire branch_taken;
@@ -105,6 +114,7 @@ module sccpu (
 
     // WB
 
+
     wire [31:0] res_auipc;
     assign rf_waddr = addr_rd;
     assign res_auipc = pc_cur[31:0] + imm_u[31:0];
@@ -116,8 +126,8 @@ module sccpu (
         end else if (jal | jalr) begin
             rf_wdata = pc_cur + 4;
         end else if (load) begin
-            // rf_wdata[31:0] = dmem_data_out[31:0];
-            rf_wdata = 32'b0;
+            rf_wdata[31:0] = dmem_data_out[31:0];
+            //rf_wdata = 32'b0;
         end else if (lui) begin
             rf_wdata = imm_u;
         end else if (op | op_imm) begin
