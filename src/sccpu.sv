@@ -107,13 +107,13 @@ module sccpu (
                     : store ? addr_st
                     : 32'hxxxxxxxx;
 
-    wire [31:0] dmem_rdata;
+    wire [31:0] mmio_rdata;
 
     mmio mmio0(
         .clk(clk), .rst(rst),
         .funct3(funct3),
         .load(load), .store(store),
-        .addr(addr_mem), .wdata(rf_rdata_rs2), .rdata(dmem_rdata)
+        .addr(addr_mem), .wdata(rf_rdata_rs2), .rdata(mmio_rdata)
     );
 
     // WB
@@ -124,19 +124,19 @@ module sccpu (
 
     always_comb begin
         rf_wen = 1;
-        if (auipc) begin
-            rf_wdata = res_auipc;
+        if (load) begin
+            rf_wdata = mmio_rdata;
         end else if (jal | jalr) begin
             rf_wdata = pc_cur + 4;
-        end else if (load) begin
-            rf_wdata = dmem_rdata;
+        end else if (auipc) begin
+            rf_wdata = res_auipc;
         end else if (lui) begin
             rf_wdata = imm_u;
         end else if (op | op_imm) begin
             rf_wdata = alu_t;
         end else begin
             rf_wen = 0;
-            rf_wdata = 32'b0;
+            rf_wdata = 32'hxxxxxxxx;
         end
     end
 
