@@ -44,6 +44,19 @@ package f3OpI;
     } funct3OpI;
 endpackage
 
+package f3OpM;
+    typedef enum bit [2:0] {
+        MUL    = 3'b000,
+        MULH   = 3'b001,
+        MULHSU = 3'b010,
+        MULHU  = 3'b011,
+        DIV    = 3'b100,
+        DIVU   = 3'b101,
+        REM    = 3'b110,
+        REMU   = 3'b111
+    } funct3OpM;
+endpackage
+
 package f3Br;
     typedef enum bit [2:0] {
         EQ  = 3'b000,
