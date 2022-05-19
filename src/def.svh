@@ -86,4 +86,10 @@ package f3St;
     } funct3Store;
 endpackage
 
+package f7OpM;
+    typedef enum bit [6:0] {
+        MULDIV = 7'b0000001
+    } funct7OpM;
+endpackage
+
 `endif
