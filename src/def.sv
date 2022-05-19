@@ -73,4 +73,8 @@ package f3St;
     } funct3Store;
 endpackage
 
+enum bit [31:0] {
+    NOP = 32'h00000013
+} InstrI;
+
 `endif
