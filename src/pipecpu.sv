@@ -2,8 +2,10 @@
 
 module pipecpu (
     input clk, rst,
-    input stall
+    input halt
 );
+
+    wire stall;
 
     // IF
 
@@ -17,12 +19,20 @@ module pipecpu (
         .nxt(pc_nxt)
     );
 
-    wire [31:0] instr;
+    wire [31:0] bubble_rdata, imem_rdata;
 
     imem imem0(
         // .clk(clk), .rst(rst),
-        .addr(pc_cur), .rdata(instr)
+        .addr(pc_cur), .rdata(imem_rdata)
     );
+
+
+    bubble bubble0(
+        .rdata(bubble_rdata)
+    );
+
+    wire [31:0] instr;
+    assign instr = stall ? bubble_rdata : imem_rdata;
 
     wire [6:0] opcode; wire [2:0] funct3; wire [6:0] funct7;
     wire [4:0] addr_rs1, addr_rs2, addr_rd;
