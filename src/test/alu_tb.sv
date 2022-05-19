@@ -28,7 +28,7 @@ module alu_tb();
         op_imm = 0;
 
         // +
-        funct3 = f3OpInt::ADD;
+        funct3 = f3OpI::ADD;
         funct7 = 7'b0000000;
         #period;
         // -
@@ -36,19 +36,19 @@ module alu_tb();
         #period;
         funct7 = 7'b0000000;
         // <<
-        funct3 = f3OpInt::SL;
+        funct3 = f3OpI::SL;
         #period;
         // slt
-        funct3 = f3OpInt::SLT;
+        funct3 = f3OpI::SLT;
         #period;
         // sltu
-        funct3 = f3OpInt::SLTU;
+        funct3 = f3OpI::SLTU;
         #period;
         // xor
-        funct3 = f3OpInt::XOR;
+        funct3 = f3OpI::XOR;
         #period;
         // logical right
-        funct3 = f3OpInt::SR;
+        funct3 = f3OpI::SR;
         funct7 = 7'b0000000;
         #period;
         // arithmetic right
@@ -56,10 +56,10 @@ module alu_tb();
         #period;
         funct7 = 7'b0000000;
         // or
-        funct3 = f3OpInt::OR;
+        funct3 = f3OpI::OR;
         #period;
         // and
-        funct3 = f3OpInt::AND;
+        funct3 = f3OpI::AND;
         #period;
 
 
@@ -69,7 +69,7 @@ module alu_tb();
         op_imm = 0;
 
         // +
-        funct3 = f3OpInt::ADD;
+        funct3 = f3OpI::ADD;
         funct7 = 7'b0000000;
         #period;
         // -
@@ -77,19 +77,19 @@ module alu_tb();
         #period;
         funct7 = 7'b0000000;
         // <<
-        funct3 = f3OpInt::SL;
+        funct3 = f3OpI::SL;
         #period;
         // slt
-        funct3 = f3OpInt::SLT;
+        funct3 = f3OpI::SLT;
         #period;
         // sltu
-        funct3 = f3OpInt::SLTU;
+        funct3 = f3OpI::SLTU;
         #period;
         // xor
-        funct3 = f3OpInt::XOR;
+        funct3 = f3OpI::XOR;
         #period;
         // logical right
-        funct3 = f3OpInt::SR;
+        funct3 = f3OpI::SR;
         funct7 = 7'b0000000;
         #period;
         // arithmetic right
@@ -97,10 +97,10 @@ module alu_tb();
         #period;
         funct7 = 7'b0000000;
         // or
-        funct3 = f3OpInt::OR;
+        funct3 = f3OpI::OR;
         #period;
         // and
-        funct3 = f3OpInt::AND;
+        funct3 = f3OpI::AND;
         #period;
 
         a      = -100;
@@ -109,7 +109,7 @@ module alu_tb();
         op_imm = 0;
 
         // +
-        funct3 = f3OpInt::ADD;
+        funct3 = f3OpI::ADD;
         funct7 = 7'b0000000;
         #period;
         // -
@@ -117,19 +117,19 @@ module alu_tb();
         #period;
         funct7 = 7'b0000000;
         // <<
-        funct3 = f3OpInt::SL;
+        funct3 = f3OpI::SL;
         #period;
         // slt
-        funct3 = f3OpInt::SLT;
+        funct3 = f3OpI::SLT;
         #period;
         // sltu
-        funct3 = f3OpInt::SLTU;
+        funct3 = f3OpI::SLTU;
         #period;
         // xor
-        funct3 = f3OpInt::XOR;
+        funct3 = f3OpI::XOR;
         #period;
         // logical right
-        funct3 = f3OpInt::SR;
+        funct3 = f3OpI::SR;
         funct7 = 7'b0000000;
         #period;
         // arithmetic right
@@ -137,10 +137,10 @@ module alu_tb();
         #period;
         funct7 = 7'b0000000;
         // or
-        funct3 = f3OpInt::OR;
+        funct3 = f3OpI::OR;
         #period;
         // and
-        funct3 = f3OpInt::AND;
+        funct3 = f3OpI::AND;
         #period;
 
         a      = 10000000;
@@ -149,7 +149,7 @@ module alu_tb();
         op_imm = 0;
 
         // +
-        funct3 = f3OpInt::ADD;
+        funct3 = f3OpI::ADD;
         funct7 = 7'b0000000;
         #period;
         // -
@@ -157,19 +157,19 @@ module alu_tb();
         #period;
         funct7 = 7'b0000000;
         // <<
-        funct3 = f3OpInt::SL;
+        funct3 = f3OpI::SL;
         #period;
         // slt
-        funct3 = f3OpInt::SLT;
+        funct3 = f3OpI::SLT;
         #period;
         // sltu
-        funct3 = f3OpInt::SLTU;
+        funct3 = f3OpI::SLTU;
         #period;
         // xor
-        funct3 = f3OpInt::XOR;
+        funct3 = f3OpI::XOR;
         #period;
         // logical right
-        funct3 = f3OpInt::SR;
+        funct3 = f3OpI::SR;
         funct7 = 7'b0000000;
         #period;
         // arithmetic right
@@ -177,10 +177,10 @@ module alu_tb();
         #period;
         funct7 = 7'b0000000;
         // or
-        funct3 = f3OpInt::OR;
+        funct3 = f3OpI::OR;
         #period;
         // and
-        funct3 = f3OpInt::AND;
+        funct3 = f3OpI::AND;
         #period;
 
         a      = 32'h20001000;
@@ -189,7 +189,7 @@ module alu_tb();
         op_imm = 1;
 
         // +
-        funct3 = f3OpInt::ADD;
+        funct3 = f3OpI::ADD;
         funct7 = 7'b0000000;
         #period;
         // -
@@ -197,19 +197,19 @@ module alu_tb();
         #period;
         funct7 = 7'b0000000;
         // <<
-        funct3 = f3OpInt::SL;
+        funct3 = f3OpI::SL;
         #period;
         // slt
-        funct3 = f3OpInt::SLT;
+        funct3 = f3OpI::SLT;
         #period;
         // sltu
-        funct3 = f3OpInt::SLTU;
+        funct3 = f3OpI::SLTU;
         #period;
         // xor
-        funct3 = f3OpInt::XOR;
+        funct3 = f3OpI::XOR;
         #period;
         // logical right
-        funct3 = f3OpInt::SR;
+        funct3 = f3OpI::SR;
         funct7 = 7'b0000000;
         #period;
         // arithmetic right
@@ -217,10 +217,10 @@ module alu_tb();
         #period;
         funct7 = 7'b0000000;
         // or
-        funct3 = f3OpInt::OR;
+        funct3 = f3OpI::OR;
         #period;
         // and
-        funct3 = f3OpInt::AND;
+        funct3 = f3OpI::AND;
         #period;
         $finish;
     end

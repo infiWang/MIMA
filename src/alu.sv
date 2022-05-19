@@ -14,7 +14,7 @@ module alu (
     always_comb begin
         if(op | op_imm) begin
             case(funct3)
-                f3OpInt::ADD: begin
+                f3OpI::ADD: begin
                     if(op_imm | funct7 == 7'b0) begin
                         t = a + b;
                     end else if(funct7 == 7'b0100000) begin
@@ -23,19 +23,19 @@ module alu (
                         t = 32'bx;
                     end
                 end
-                f3OpInt::AND: begin
+                f3OpI::AND: begin
                     t = a & b;
                 end
-                f3OpInt::OR: begin
+                f3OpI::OR: begin
                     t = a | b;
                 end
-                f3OpInt::XOR: begin
+                f3OpI::XOR: begin
                     t = a ^ b;
                 end
-                f3OpInt::SL: begin
+                f3OpI::SL: begin
                     t = a << b;
                 end
-                f3OpInt::SR: begin
+                f3OpI::SR: begin
                     if(funct7 == 7'b0) begin
                         t = a >> b[4:0];
                     end else if(funct7 == 7'b0100000) begin
@@ -44,10 +44,10 @@ module alu (
                         t = 32'bx;
                     end
                 end
-                f3OpInt::SLT: begin
+                f3OpI::SLT: begin
                     t = $signed(a) < $signed(b) ? 32'b1 : 32'b0;
                 end
-                f3OpInt::SLTU: begin
+                f3OpI::SLTU: begin
                     t = a < b ? 32'b1 : 32'b0;
                 end
                 default: t = 32'bx;
