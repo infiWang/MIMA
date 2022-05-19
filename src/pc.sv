@@ -1,7 +1,7 @@
 `include "def.sv"
 
 module pc (
-    input clk, rst,
+    input clk, rst, stall,
 
     input jmp, rel,
     input [31:0] nxt,
@@ -20,7 +20,9 @@ module pc (
         if(rst) begin
             r <= 32'b0;
         end else begin
-            if(jmp) begin
+            if(stall) begin
+                r <= r;
+            end else if(jmp) begin
                 if(rel) begin
                     r <= r + nxt;
                 end else begin

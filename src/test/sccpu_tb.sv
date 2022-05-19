@@ -5,10 +5,10 @@ module sccpu_tb();
 
     localparam period = 10;
 
-    reg clk, rst;
+    reg clk, rst, stall;
 
     sccpu my_cpu(
-        .clk(clk), .rst(rst)
+        .clk(clk), .rst(rst), .stall(stall)
     );
 
     initial begin
@@ -18,8 +18,12 @@ module sccpu_tb();
 
     initial begin
         rst = 1;
+        stall = 1;
         #period;
         rst = 0;
+        stall = 0;
+
+        // forever #10 stall = ~stall;
 
         #999990;
         #period;

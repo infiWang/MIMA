@@ -1,8 +1,8 @@
 `include "def.sv"
 
 module sccpu (
-    input clk,
-    input rst
+    input clk, rst,
+    input stall
 );
 
     // IF
@@ -11,7 +11,7 @@ module sccpu (
     wire [31:0] pc_cur, pc_nxt;
 
     pc pc0(
-        .clk(clk), .rst(rst),
+        .clk(clk), .rst(rst), .stall(stall),
         .cur(pc_cur),
         .jmp(pc_jmp), .rel(pc_rel),
         .nxt(pc_nxt)
