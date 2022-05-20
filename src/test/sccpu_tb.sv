@@ -7,7 +7,7 @@ module sccpu_tb();
 
     reg clk, rst, stall;
 
-    sccpu my_cpu(
+    sccpu mimasama(
         .clk(clk), .rst(rst), .stall(stall)
     );
 
