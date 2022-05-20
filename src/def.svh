@@ -1,6 +1,8 @@
 `ifndef _Definition
 `define _Definition
 
+`define __feature_RVM
+
 package gopcode;
     typedef enum bit [4:0] {
         LOAD     = 5'b00000,
