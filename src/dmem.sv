@@ -1,6 +1,6 @@
 `include "def.svh"
 
-module ram (
+module dmem (
     input clk, rst,
 
     input [2:0] funct3,

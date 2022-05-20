@@ -11,7 +11,7 @@ module mmio (
     output reg [31:0] rdata
 );
 
-    ram dmem0(
+    dmem dmem0(
         .clk(clk), .rst(rst),
         .load(load), .store(store),
         .funct3(funct3),
