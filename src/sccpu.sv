@@ -17,7 +17,7 @@ module sccpu (
         .nxt(pc_nxt)
     );
 
-    wire [31:0] instr;
+    instruction::ix32 instr;
 
     imem imem0(
         // .clk(clk), .rst(rst),

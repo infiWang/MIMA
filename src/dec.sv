@@ -1,7 +1,9 @@
 `include "def.svh"
 
+import instruction::*;
+
 module dec (
-    input [31:0] instr,
+    input ix32 instr,
     output [6:0] opcode,
     output [2:0] funct3,
     output [6:0] funct7,
@@ -29,16 +31,16 @@ module dec (
     output system
 );
 
-    assign opcode[6:0] = instr[6:0];
-    assign funct3[2:0] = instr[14:12];
-    assign funct7[6:0] = instr[31:25];
-    assign rs1[4:0]    = instr[19:15];
-    assign rs2[4:0]    = instr[24:20];
-    assign rd[4:0]     = instr[11:7];
-    assign imm5[4:0]   = instr[11:7];
-    assign imm7[6:0]   = instr[31:25];
-    assign imm12[11:0] = instr[31:20];
-    assign imm20[19:0] = instr[31:12];
+    assign opcode = instr.R.opcode;
+    assign funct3 = instr.R.funct3;
+    assign funct7 = instr.R.funct7;
+    assign rs1    = instr.R.rs1;
+    assign rs2    = instr.R.rs2;
+    assign rd     = instr.R.rd;
+    assign imm5   = instr.S.imm5;
+    assign imm7   = instr.S.imm7;
+    assign imm12  = instr.I.imm12;
+    assign imm20  = instr.U.imm20;
 
     /*
     assign imm_i[31:0] = { { 20{imm12[11]} }, imm12 };
